@@ -14,6 +14,9 @@
     <td>
       <a href="{% url 'vet:owner_detail' pk=owner.id %}">{{ owner.id }}</a>
     </td>
+    <td>
+      <a href="/vet/owners/{{ owner.id }}/">{{ owner.id }}</a>
+    </td>
     <td>{{ owner.first_name }}</td>
     <td>{{ owner.email }}</td>
   </tr>

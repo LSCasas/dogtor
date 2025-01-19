@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import ListView, DetailView, View
+from django.views.generic import ListView, DetailView, View, CreateView, UpdateView
 from vet.models import PetOwner, Pet
+from django.urls import reverse_lazy
+from .forms import OwnerForm, PetForm
+
 # Create your views here.
 def list_pet_owners(request):
     """"List owners"""
@@ -29,13 +32,13 @@ class OwnersList(ListView):
 class PetList(ListView):
     """Render all Pets."""
     model = Pet
-    template_name = "vet/owners/list_pet.html"
+    template_name = "vet/pet/list_pet.html"
     context_object_name = "pets"
 
 class PetDetail(DetailView):
     """Render a detailed view of a specific pet based on its pk."""
     model = Pet
-    template_name = "vet/owners/detail_pet.html"
+    template_name = "vet/pet/detail_pet.html"
     context_object_name = "pet"
 
 class OwnerDetail(DetailView):
@@ -48,3 +51,33 @@ class Test(View):
     """A simple test view."""
     def get(self, request):
         return HttpResponse("Hello world from a class-based generic view")
+
+
+class OwnersCreate(CreateView):
+    """"View used to create a PetOwner."""
+    model = PetOwner
+    template_name = "vet/owners/create.html"
+    form_class = OwnerForm
+    success_url = reverse_lazy("vet:owners_list")
+
+class PetCreate(CreateView):
+    """"View used to create a Pet."""
+    model = Pet
+    template_name = "vet/pet/create_pet.html"
+    form_class = PetForm
+    success_url = reverse_lazy("vet:pet_list")
+
+
+class OwnersUpdate(UpdateView):
+    """"View used to create a PetOwner."""
+    model = PetOwner
+    template_name = "vet/owners/update.html"
+    form_class = OwnerForm
+    success_url = reverse_lazy("vet:owners_list")
+
+class PetUpdate(UpdateView):
+    """"View used to create a PetOwner."""
+    model = Pet
+    template_name = "vet/pet/update_pet.html"
+    form_class = PetForm
+    success_url = reverse_lazy("vet:pet_list")
