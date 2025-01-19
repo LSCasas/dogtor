@@ -20,10 +20,13 @@ from django.urls import path, include
 #Admin Panel
 from blog.admin import blog_admin_site
 
+
+
 urlpatterns = [
-    path('admin/',admin.site.urls),
+    path('admin/', admin.site.urls),
     path('blogadmin/', blog_admin_site.urls),
-    path("vet/", include(("vet.urls", "vet")))
+    path("vet/", include(("vet.urls", "vet"))),
+    path("accounts/", include("django.contrib.auth.urls")),  
 ]
 
 
