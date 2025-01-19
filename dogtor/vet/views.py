@@ -4,6 +4,7 @@ from django.views.generic import ListView, DetailView, View, CreateView, UpdateV
 from vet.models import PetOwner, Pet
 from django.urls import reverse_lazy
 from .forms import OwnerForm, PetForm
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 # Create your views here.
 def list_pet_owners(request):
@@ -68,8 +69,13 @@ class PetCreate(CreateView):
     success_url = reverse_lazy("vet:pet_list")
 
 
-class OwnersUpdate(UpdateView):
+class OwnersUpdate(PermissionRequiredMixin, UpdateView):
     """"View used to create a PetOwner."""
+    permission_required = "vet.change_petowner"
+    raise_exception = False
+    login_url = "/admin/login"
+
+    redirect_field_name = "next"
     model = PetOwner
     template_name = "vet/owners/update.html"
     form_class = OwnerForm
