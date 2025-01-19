@@ -17,7 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+#Admin Panel
+from blog.admin import blog_admin_site
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/',admin.site.urls),
+    path('blogadmin/', blog_admin_site.urls),
     path("vet/", include(("vet.urls", "vet")))
 ]
+
+
+#Customizar nuestro panel de administracion
+admin.site.index_title = "Dogtor"
+admin.site.site_header = "Dogtor Admin"
