@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView, View, CreateView, UpdateV
 from vet.models import PetOwner, Pet
 from django.urls import reverse_lazy
 from .forms import OwnerForm, PetForm
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 
 # Create your views here.
 def list_pet_owners(request):
@@ -42,7 +42,7 @@ class PetDetail(DetailView):
     template_name = "vet/pet/detail_pet.html"
     context_object_name = "pet"
 
-class OwnerDetail(DetailView):
+class OwnerDetail(LoginRequiredMixin, DetailView):
     """Render a detailed view of a specific pet owner based on their pk."""
     model = PetOwner
     template_name = "vet/owners/detail.html"
