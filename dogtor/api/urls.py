@@ -2,9 +2,8 @@ from django.urls import path, include
 from rest_framework import routers
 
 #views
-from .views import OwnersViewSet
-from .views import PetDateViewSet
-from .views import PetViewSet
+from .views import OwnersViewSet, PetDateViewSet, PetViewSet
+
 
 #Router
 router = routers.DefaultRouter()

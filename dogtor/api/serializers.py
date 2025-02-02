@@ -1,15 +1,12 @@
 from rest_framework import serializers
 
 # Models
-from vet.models import PetOwner
-from vet.models import PetDate
-from vet.models import Pet
+from vet.models import PetOwner, PetDate, Pet
 
 
 
 class OwnersSerializers(serializers.HyperlinkedModelSerializer):
     """Pet owners serializer."""
-
     class Meta:  
         model = PetOwner
         fields = [
@@ -36,6 +33,7 @@ class PetDateSerializers(serializers.HyperlinkedModelSerializer):
 
 class PetSerializers(serializers.HyperlinkedModelSerializer):
     """Pet serializer."""
+    owner = serializers.PrimaryKeyRelatedField(queryset=PetOwner.objects.all(), many=False)
 
     class Meta:  # Cambié 'meta' por 'Meta'
         model = Pet

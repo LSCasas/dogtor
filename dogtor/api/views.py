@@ -2,14 +2,12 @@ from django.shortcuts import render
 from rest_framework import viewsets
 
 # Models
-from vet.models import PetOwner
-from vet.models import PetDate
-from vet.models import Pet
+from vet.models import PetOwner, PetDate, Pet
+
 
 # Serializers
-from .serializers import OwnersSerializers
-from .serializers import PetDateSerializers
-from .serializers import PetSerializers
+from .serializers import OwnersSerializers, PetDateSerializers, PetSerializers
+
 
 
 # Create your views here.
@@ -19,6 +17,7 @@ class OwnersViewSet(viewsets.ModelViewSet):
     # Definir queryset y serializer_class dentro de la clase
     queryset = PetOwner.objects.all()
     serializer_class = OwnersSerializers
+    
 
 
 class PetDateViewSet(viewsets.ModelViewSet):
