@@ -27,6 +27,7 @@ urlpatterns = [
     path('blogadmin/', blog_admin_site.urls),
     path("vet/", include(("vet.urls", "vet"))),
     path("accounts/", include("django.contrib.auth.urls")),  
+    path("api/", include(("api.urls", "api")))
 ]
 
 
