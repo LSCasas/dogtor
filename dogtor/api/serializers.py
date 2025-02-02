@@ -45,3 +45,32 @@ class PetSerializers(serializers.HyperlinkedModelSerializer):
         ]
 
 
+
+# OWNERS
+class OwnersListSerializer(serializers.ModelSerializer):
+    """Serializer to list all Post Owners"""
+    class Meta:
+        model = PetOwner
+        fields = ["first_name", "last_name"]
+
+class OwnersDetailSerializer(serializers.ModelSerializer):
+    """Serializer for the detail of a Pet Owner."""
+    class Meta:
+        model = PetOwner
+        fields = "__all__"
+
+
+# OWNERS
+class PetDateListSerializer(serializers.ModelSerializer):
+    """Serializer to list all Post Pet Date"""
+    class Meta:
+        model = PetDate
+        fields = "__all__"
+
+
+# PET
+class PetListSerializer(serializers.ModelSerializer):
+    """Serializer to list all Post Pet """
+    class Meta:
+        model = Pet
+        fields = "__all__"
