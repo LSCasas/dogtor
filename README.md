@@ -5,7 +5,7 @@ A Django-based web application to manage pet owners, veterinarians, informationa
 ---
 
 ## Table of Contents
-
+ 
 - [Project Structure](#project-structure)
 - [Features](#features)
 - [Installation](#installation)
